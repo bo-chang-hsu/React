@@ -1,26 +1,22 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
-import { login, logout } from '../Slice/LoginSlice'
 
 function Login(props) {
     const [account, setAccount] = useState('')
     const [password, setPassword] = useState('')
-    const dispatch = useDispatch()
-    const navigate = useNavigate()
 
     const handleLogin = (e) => {
         e.preventDefault()
         if (account === 'admin' && password === '12345') {
-            dispatch(login(true))
+            debugger
+            props.setToken({ isLogin: true })
         } else {
             alert('Password not correct or have this user')
         }
 
         setAccount('')
         setPassword('')
-
-        navigate('/Home') //*跳轉
     }
     return (
         <form onSubmit={handleLogin}>
